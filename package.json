@@ -1,0 +1,22 @@
+{
+  "name": "covid_dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marco-Pagani/covid_dashboard.git"
+  },
+  "author": "Marco Pagani",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Marco-Pagani/covid_dashboard/issues"
+  },
+  "homepage": "https://github.com/Marco-Pagani/covid_dashboard#readme",
+  "dependencies": {
+    "jhucsse.covid": "^1.3.2"
+  }
+}
