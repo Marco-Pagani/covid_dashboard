@@ -4,7 +4,7 @@
   "description": "A voice enabled user agent that delivers up-to-date statistics on the coronavirus",
   "main": "index.js",
   "scripts": {
-    "test": "debug"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
