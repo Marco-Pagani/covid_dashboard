@@ -12,7 +12,7 @@ const port = 3000;
 //console.log(stats.relative(10));
 
 
-
+app.set('port', (process.env.PORT || port))
 app.get('/', (req, res) => res.send("welcome"));
 
 app.post('/getStats', function (req, res) {
@@ -35,4 +35,4 @@ app.post('/getStats', function (req, res) {
 
 
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(app.get('port'), () => console.log(`Example app listening at http://localhost:${port}`))
