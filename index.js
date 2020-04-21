@@ -1,10 +1,14 @@
 var data = require('jhucsse.covid');
 var moment = require('moment');
-var stats = require('./stats.js')
+const dialogflow = require('dialogflow');
+const uuid = require('uuid');
+var stats = require('./stats.js');
+
 
 const http = require('http');
-const express = require('express')
-const app = express()
+var bodyParser = require('body-parser')
+const express = require('express');
+const app = express();
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -12,10 +16,16 @@ const port = 3000;
 //console.log(stats.relative(10));
 
 
+app.use(express.json());
 app.set('port', (process.env.PORT || port))
 app.get('/', (req, res) => res.send("welcome"));
 
+app.post('/test', function (req, res) {
+  
+});
+
 app.post('/getStats', function (req, res) {
+  /*
   data.confirmed()
     .then(function (results) {
       //console.log(results.latest);
@@ -31,6 +41,14 @@ app.post('/getStats', function (req, res) {
       });
       //console.log(top);
     });
+  */
+  //console.log(req.body)
+   response = req.body.queryResult.parameters.state;
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({
+        "speech" : response+ "? ",
+        "displayText" : "Error. Can you try it again ? "
+    }));
 });
 
 
