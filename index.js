@@ -17,6 +17,7 @@ const port = 3000;
 
 
 app.use(express.json());
+app.use(express.static('public'))
 app.set('port', (process.env.PORT || port))
 app.get('/', (req, res) => res.send("welcome"));
 
