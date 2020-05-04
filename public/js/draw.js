@@ -57,7 +57,7 @@ function fetchData() {
 fetchData();
 */
 (async () => {
-    const rawResponse = await fetch('http://localhost:3000/getLatestGlobal', {
+    const rawResponse = await fetch('https://corona-stats-agent.herokuapp.com/getLatestGlobal', {
         method: 'post',
         body: JSON.stringify()
     });

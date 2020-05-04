@@ -22,7 +22,7 @@ app.use(express.static('public'))
 app.set('port', (process.env.PORT || port))
 
 var corsOptions = {
-  origin: 'http://localhost',
+  origin: 'https://corona-stats-agent.herokuapp.com/*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
