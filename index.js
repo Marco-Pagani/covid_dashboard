@@ -20,7 +20,7 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-app.use(allowCrossDomain);
+//app.use(allowCrossDomain);
 app.use(express.json());
 app.use(express.static('public'))
 app.set('port', (process.env.PORT || port))
