@@ -73,18 +73,19 @@ function drawData(data) {
         .style("text-anchor", "end");
 
     // Add Y axis
-    var y = d3.scaleLinear()
-        .domain([0, d3.max(linedata, function (d) { return +d.value; })])
+    var y = d3.scaleLog()
+        .domain([1, d3.max(linedata, function (d) { return +d.value; })])
         .range([height, 0]);
     linegraph.append("g")
         .call(d3.axisLeft(y));
+        
 
     // Add the line
     linegraph.append("path")
         .datum(linedata)
         .attr("fill", "none")
         .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
+        .attr("stroke-width", 2.5)
         .attr("d", d3.line()
             .x(function (d) { return x(d.date) })
             .y(function (d) { return y(d.value) })
