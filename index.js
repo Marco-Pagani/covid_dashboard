@@ -15,16 +15,16 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 //console.log(stats.relative(10));
-
-
-app.use(express.json());
-app.use(express.static('public'))
-app.set('port', (process.env.PORT || port))
-
 var corsOptions = {
   origin: 'https://corona-stats-agent.herokuapp.com/*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
+
+app.use(allowCrossDomain);
+app.use(express.json());
+app.use(express.static('public'))
+app.set('port', (process.env.PORT || port))
+
 
 app.get('/', (req, res) => res.send("welcome"));
 app.post('/getStats', function (req, res) {
