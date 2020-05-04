@@ -5,7 +5,7 @@ function drawData(data) {
         width = 450 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
-    var graph = d3.select("#dataviz")
+    var graph = d3.select("#cases_by_country")
         .append("svg")
         .attr("viewBox", `0 0 450 400`)
         .append("g")
@@ -44,6 +44,60 @@ function drawData(data) {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .text("Number of Cases by Country");
+
+    var linegraph = d3.select("#us_timeline")
+        .append("svg")
+        .attr("viewBox", `0 0 450 400`)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var linedata = [];
+    Object.keys(data[0].history).map(function (key) {
+        linedata.push({
+            date: d3.timeParse("%m/%d/%Y")(key),
+            value: data[0].history[key]
+        });
+    });
+    
+    console.log(linedata);
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+        .domain(d3.extent(linedata, function (d) { return d.date; }))
+        .range([0, width]);
+    linegraph.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+        .attr("transform", "translate(-10,0)rotate(-45)")
+        .style("text-anchor", "end");
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+        .domain([0, d3.max(linedata, function (d) { return +d.value; })])
+        .range([height, 0]);
+    linegraph.append("g")
+        .call(d3.axisLeft(y));
+
+    // Add the line
+    linegraph.append("path")
+        .datum(linedata)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line()
+            .x(function (d) { return x(d.date) })
+            .y(function (d) { return y(d.value) })
+    )
+    
+    
+    linegraph.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("US Cases over Time");
+
 }
 /*
 function fetchData() {
@@ -57,7 +111,7 @@ function fetchData() {
         console.log(data);
       });
 }
-
+ 
 fetchData();
 */
 (async () => {
