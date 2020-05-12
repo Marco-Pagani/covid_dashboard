@@ -1,4 +1,7 @@
-// set the dimensions and margins of the graph
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+  
 function drawData(data) {
 
     var margin = { top: 50, right: 40, bottom: 80, left: 80 },
@@ -162,8 +165,8 @@ function drawSummary(latest) {
         .style('fill', (d, i) => colors[i])
     
     
-    data.map(d => document.getElementById(d.type).textContent = d.value);
-    document.getElementById('total').textContent = offset;
+    data.map(d => document.getElementById(d.type).textContent = formatNumber(d.value));
+    document.getElementById('total').textContent = formatNumber(offset);
 }
 
 
