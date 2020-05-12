@@ -77,10 +77,26 @@
             </div>
 
     </section>
-    <section>
+    <section class="section">
         
     <div class="container">
-        <h1 class="title">Latest Stats</h1>
+        <div class="card"> <div class="card-image">
+            <div id="summary"></div>
+        </div>
+        <div class="card-content">
+            <p class="title is-size-1 has-text-weight-semibold">
+                <span class="has-text-weight-bold" id="total">?</span> people have been directly impacted by Coronavirus. There are currently <span class="has-text-warning has-text-weight-bold"id="cases">?</span> cases of COVID19 worldwide. <span class="has-text-danger has-text-weight-bold" id="deaths">?</span> people have died, and <span class="has-text-success has-text-weight-bold" id="recovered">?</span> have recovered so far.
+            </p>
+        </div>
+        <!--
+            <h2 class="subtitle is-size-1 has-text-weight-semibold">
+                <span class="has-text-weight-bold" id="total">?</span> people have been directly impacted by Coronavirus. There are currently <span class="has-text-warning"id="cases">?</span> cases of COVID19 worldwide. <span class="has-text-danger" id="deaths">?</span> people have died, and <span class="has-text-success" id="recovered">?</span> have recovered so far.
+              </h2>
+              -->
+        </div>
+    </div>
+        
+    <div class="container">
         <div class="columns is-centered">
             <div class="column is-half">
                 <div class="card" id="cases_by_country">
@@ -96,7 +112,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>Data</strong> Sourced from <a href="https://github.com/ExpDev07/coronavirus-tracker-api" >ExpDev's Covid tracker API</a>. <strong>Corona Visualizations</strong> by <a href="https://pagani.io">Marco Pagani</a>. Stay safe out there &hearts;
+            <strong>Data</strong> Sourced from <a href="https://github.com/ExpDev07/coronavirus-tracker-api" >ExpDev's Covid tracker API</a>. <strong>Visualizations</strong> by <a href="https://pagani.io">Marco Pagani</a>. Stay safe out there &hearts;
           </p>
         </div>
       </footer>

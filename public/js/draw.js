@@ -58,7 +58,7 @@ function drawData(data) {
             value: data[0].history[key]
         });
     });
-    
+
     console.log(linedata);
 
     // Add X axis --> it is a date format
@@ -78,7 +78,7 @@ function drawData(data) {
         .range([height, 0]);
     linegraph.append("g")
         .call(d3.axisLeft(y));
-        
+
 
     // Add the line
     linegraph.append("path")
@@ -89,9 +89,9 @@ function drawData(data) {
         .attr("d", d3.line()
             .x(function (d) { return x(d.date) })
             .y(function (d) { return y(d.value) })
-    )
-    
-    
+        )
+
+
     linegraph.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
@@ -100,28 +100,92 @@ function drawData(data) {
         .text("US Cases over Time");
 
 }
-/*
-function fetchData() {
-    fetch('http://localhost:3000/getLatestGlobal', {
-        method: 'post',
-        body: JSON.stringify()
-      }).then(function(response) {
-        console.log(response);
-        return drawData(response.json());
-      }).then(function(data) {
-        console.log(data);
-      });
+
+function drawSummary(latest) {
+    console.log(latest);
+    var data =
+        [
+            {
+                type: 'cases',
+                value: latest.confirmed
+            },
+            {
+                type: 'deaths',
+                value: latest.deaths
+            },
+            {
+                type: 'recovered',
+                value: latest.recovered
+            },
+    ]
+    var offset = 0;
+    data = data.map(d => {
+        
+        offset += d.value;
+        return {
+            type: d.type,
+            value: d.value,
+            offset: offset - d.value
+        }
+    });
+    var total = offset;
+
+    console.log(data);
+    var margin = { top: 20, right: 10, bottom: 20, left: 10 },
+        width = 800,
+        height = 70,
+        barHeight = 50,
+        colors = ['#ffdd57', '#ff3860', '#48c774'];
+
+    const w = width - margin.left - margin.right
+    const h = height - margin.top - margin.bottom
+    const halfBarHeight = barHeight / 2
+
+    const xScale = d3.scaleLinear()
+        .domain([0, total])
+        .range([0, w])
+
+    const selection = d3.select("#summary")
+        .append('svg')
+        .attr("viewBox", `0 0 800 70`)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+    selection.selectAll('rect')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'rect-stacked')
+        .attr('x', function (d) { return xScale(d.offset) })
+        .attr('y', h / 2 - halfBarHeight)
+        .attr('height', barHeight)
+        .attr('width', function (d) {return xScale(d.value) })
+        .style('fill', (d, i) => colors[i])
+    
+    
+    data.map(d => document.getElementById(d.type).textContent = d.value);
+    document.getElementById('total').textContent = offset;
 }
- 
-fetchData();
-*/
+
+
 (async () => {
-    const rawResponse = await fetch('https://corona-stats-agent.herokuapp.com/getLatestGlobal', {
+    const rawResponse = await fetch('https://corona-stats-agent.herokuapp.com/all', {
         method: 'post',
         body: JSON.stringify()
     });
     const content = await rawResponse.json();
 
-    //console.log(content);
-    drawData(content);
+    console.log(content);
+
+    var top = content.confirmed.locations;
+    top = top.sort(function compare(a, b) {
+        return b.latest - a.latest;
+    });
+    top.length = 7;
+    top.forEach(function (country) {
+        console.log(country.country + ": " + country.latest);
+    });
+
+
+    drawData(top);
+    drawSummary(content.latest);
 })();

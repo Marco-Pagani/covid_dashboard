@@ -26,26 +26,7 @@ app.use(express.static('public'))
 app.set('port', (process.env.PORT || port))
 
 
-app.get('/', (req, res) => res.send("welcome"));
 app.post('/getStats', function (req, res) {
-  /*
-  data.confirmed()
-    .then(function (results) {
-      //console.log(results.latest);
-      //console.log(results.locations[0]);
-      //console.log(results.locations[0].history['3/20/20']);
-      var top = results.locations;
-      top = top.sort(function compare(a, b) {
-        return b.latest - a.latest;
-      });
-      top.length = 5;
-      top.forEach(function (country) {
-        console.log(country.country + ": " + country.latest);
-      });
-      //console.log(top);
-    });
-  */
-  //console.log(req.body)
    response = req.body.queryResult.parameters.state;
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({
@@ -54,9 +35,13 @@ app.post('/getStats', function (req, res) {
     }));
 });
 
-app.post('/getLatestGlobal', cors(), function (req, res) {
-  data.confirmed()
+app.post('/all', cors(), function (req, res) {
+  console.log("get all");
+  data.all()
     .then(function (results) {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify( results ));
+      /*
       var top = results.locations;
       top = top.sort(function compare(a, b) {
         return b.latest - a.latest;
@@ -67,8 +52,17 @@ app.post('/getLatestGlobal', cors(), function (req, res) {
       });
       res.setHeader('Content-Type', 'application/json');
       res.send(JSON.stringify( top ));
+      */
     });
   
+});
+
+app.post('/latestSummary', cors(), function (req, res) {
+  data.all()
+  .then(function (results) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify( results.latest ));
+  });
 });
 
 
