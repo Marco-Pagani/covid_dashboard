@@ -110,7 +110,7 @@ function drawSummary(latest) {
         [
             {
                 type: 'cases',
-                value: latest.confirmed
+                value: (latest.confirmed - latest.deaths - latest.recovered)
             },
             {
                 type: 'deaths',
@@ -131,7 +131,7 @@ function drawSummary(latest) {
             offset: offset - d.value
         }
     });
-    var total = offset;
+    var total = latest.confirmed;
 
     console.log(data);
     var margin = { top: 20, right: 10, bottom: 20, left: 10 },
