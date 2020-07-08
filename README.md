@@ -10,13 +10,25 @@ This project leverages a number of useful tools to help you understand the state
 
 All this thanks to the wonderful [statistics API](https://github.com/ExpDev07/coronavirus-tracker-api) created by [ExpDev](https://github.com/ExpDev07).
 
-## Getting Started
+## Project setup
+```
+npm install
+```
 
-Development is as easy as can be, just install npm and get set up quick:
+### Compiles and hot-reloads for development
 ```
-npm install --dev
+npm run serve
 ```
-Then start up the node.js server and you're ready to go:
+
+### Compiles and minifies for production
 ```
-npm start
+npm run build
 ```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
