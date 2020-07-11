@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import NumberSummary from "./stats/NumberSummary.vue";
 import TopCountries from "./stats/TopCountries.vue";
 import USTimeline from "./stats/USTimeline.vue";
@@ -20,6 +21,13 @@ export default {
     NumberSummary,
     TopCountries,
     USTimeline
+  },
+  methods: {
+    ...mapActions([
+    ])
+  },
+  mounted () {
+    this.$store.dispatch('load')
   }
 };
 </script>

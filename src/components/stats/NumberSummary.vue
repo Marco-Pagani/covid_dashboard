@@ -11,3 +11,14 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    computed: {
+        //stats: this.$store.state.stats
+    },
+    mounted () {
+        console.log(this.$store.state.stats)
+    }
+}
+</script>
