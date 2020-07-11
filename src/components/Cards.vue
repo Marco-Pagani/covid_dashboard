@@ -27,7 +27,7 @@ export default {
     ])
   },
   mounted () {
-    this.$store.dispatch('load')
+    // this.$store.dispatch('load')
   }
 };
 </script>

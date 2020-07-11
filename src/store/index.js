@@ -10,7 +10,11 @@ export default new Vuex.Store({
   state: {
     loading: false,
     stats: {
-      latest: null,
+      latest: {
+        confirmed: 1000,
+        deaths: 200,
+        recovered: 60
+      },
       countries: null,
       us_states: null
     }
@@ -24,7 +28,7 @@ export default new Vuex.Store({
     load({ commit }) {
       return new Promise((resolve, reject) => {
         console.log('gettin')
-        axi.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=jhu&timelines=true').then(res => {
+        axi.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=jhu&timelines=false').then(res => {
           commit('LOAD_STATS', res.data)
         console.log('got')
         })
