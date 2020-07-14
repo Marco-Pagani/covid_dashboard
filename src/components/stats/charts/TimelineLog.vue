@@ -1,22 +1,25 @@
 <template>
-  <div id="tl_log" />
+  <div :id="this.id" />
 </template>
 
 <script>
 import * as d3 from "d3";
 
 export default {
-  props: ["payload"],
+  props: [
+    'payload',
+    'id'
+    ],
   watch: {
     payload (value) {
         if (value.ready){
-            this.draw(value.data)
+            this.draw(value.title, value.data)
         }
 
     }
   },
   methods: {
-    draw(data) {
+    draw(title, data) {
         console.log('chart got data')
         console.log(data)
         var margin = { top: 50, right: 40, bottom: 80, left: 80 },
@@ -24,7 +27,7 @@ export default {
         height = 400 - margin.top - margin.bottom;
         
       var linegraph = d3
-        .select("#tl_log")
+        .select("#" + this.id)
         .append("svg")
         .attr("viewBox", `0 0 450 400`)
         .append("g")
@@ -94,7 +97,7 @@ export default {
         .attr("y", 0 - margin.top / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
-        .text("US Cases over Time");
+        .text(title);
     
     }
   }

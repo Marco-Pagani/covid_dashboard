@@ -1,7 +1,7 @@
 <template>
   <div class="column is-half">
     <div class="card" id="us_timeline">
-      <TimelineLog :payload="this.chartData" />
+      <TimelineLog id="us_timeline" :payload="this.chartData" />
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
         let us_data = statistics.state.global_stats.locations[225]
         return {
           ready: true,
+          title: 'US Cases over Time',
           data: us_data.timelines.confirmed.timeline
         }
       } else {
