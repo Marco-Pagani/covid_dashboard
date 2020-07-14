@@ -15,7 +15,6 @@ export default {
   methods: {
     draw() {
       let stats = this.data;
-      console.log(stats)
       var offset = 0;
       stats = stats.map(d => {
         offset += d.value;

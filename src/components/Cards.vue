@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 import NumberSummary from "./stats/NumberSummary.vue";
 import TopCountries from "./stats/TopCountries.vue";
 import USTimeline from "./stats/USTimeline.vue";
@@ -23,11 +23,15 @@ export default {
     USTimeline
   },
   methods: {
-    ...mapActions([
-    ])
+    ...mapActions([])
   },
-  mounted () {
-    // this.$store.dispatch('load')
+  mounted() {
+    if (!window.webpackHotUpdate) {
+      this.$store.dispatch("load");
+    } else {
+      console.log("In dev mode, using dummy data");
+       this.$store.dispatch("load_mocked");
+    }
   }
 };
 </script>

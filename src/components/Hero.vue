@@ -47,6 +47,7 @@
                         <h2 class="subtitle">
                             Ask about the latests stats for the Coronavirus pandemic and get up-to-date graphics that help you understand the state of the world.
                         </h2>
+                        <!--
                         <div class="box">
                             <div class="field has-addons ">
                                 <div class="control has-icons-left is-expanded">
@@ -62,6 +63,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
                 </div>

@@ -31,7 +31,7 @@ export default {
     },
   computed: {
     latest() {
-      return this.$store.state.stats.latest;
+      return this.$store.state.global_stats.latest;
     },
     total_cases () {
         return this.latest.confirmed
