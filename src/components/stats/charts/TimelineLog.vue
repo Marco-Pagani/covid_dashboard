@@ -6,26 +6,26 @@
 import * as d3 from "d3";
 
 export default {
-  props: [
-    'payload',
-    'id'
-    ],
+  props: ["payload", "id"],
   watch: {
-    payload (value) {
-        if (value.ready){
-            this.draw(value.title, value.data)
+    payload: {
+      handler(value) {
+        if (value.ready) {
+          this.draw(value.title, value.data);
         }
-
+      },
+      deep: true
     }
   },
   methods: {
     draw(title, data) {
-        console.log('chart got data')
-        console.log(data)
-        var margin = { top: 50, right: 40, bottom: 80, left: 80 },
+      console.log("chart got data:");
+      console.log(data);
+      var margin = { top: 50, right: 40, bottom: 80, left: 80 },
         width = 450 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
-        
+
+      d3.selectAll("#" + this.id + " > *").remove();
       var linegraph = d3
         .select("#" + this.id)
         .append("svg")
@@ -41,7 +41,7 @@ export default {
         });
       });
 
-      console.log(linedata);
+      // console.log(linedata);
 
       // Add X axis --> it is a date format
       var x = d3
@@ -98,7 +98,6 @@ export default {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .text(title);
-    
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-half">
+  <div class="column is-one-third">
     <div class="card" id="us_timeline">
       <TimelineLog id="us_timeline" :payload="this.chartData" />
     </div>
