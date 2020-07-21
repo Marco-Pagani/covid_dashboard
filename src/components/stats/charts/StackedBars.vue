@@ -27,7 +27,7 @@ export default {
       var total = stats[0].value;
 
       var margin = { top: 20, right: 10, bottom: 20, left: 10 },
-        width = 800,
+        width = 400,
         height = 70,
         barHeight = 50,
         colors = ["#ffdd57", "#ff3860", "#48c774"];

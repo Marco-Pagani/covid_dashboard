@@ -1,6 +1,6 @@
 <template>
   <div class="column is-one-third">
-    <div class="card" id="us_timeline">
+    <div class="card">
       <TimelineLog id="us_timeline" :payload="this.chartData" />
     </div>
   </div>

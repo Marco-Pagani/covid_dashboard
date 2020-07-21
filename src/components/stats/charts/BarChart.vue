@@ -19,40 +19,28 @@ export default {
   },
   methods: {
     draw(title, data) {
-      // console.log("chart got data:");
-      //console.log(data);
+        console.log(data)
       let margin = { top: 50, right: 40, bottom: 80, left: 80 },
         width = 450 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
-      d3.selectAll("#" + this.id + " > *").remove();
-      let linegraph = d3
+      let bar_graph = d3
         .select("#" + this.id)
         .append("svg")
         .attr("viewBox", `0 0 450 400`)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      let linedata = [];
-      Object.keys(data).map(function(key) {
-        linedata.push({
-          date: d3.timeParse("%Y-%m-%dT%H:%M:%SZ")(key),
-          value: data[key]
-        });
-      });
-
-      // console.log(linedata);
-
-      // Add X axis --> it is a date format
       let x = d3
-        .scaleTime()
+        .scaleBand()
+        .range([0, width])
         .domain(
-          d3.extent(linedata, function(d) {
-            return d.date;
+          data.map(function(d) {
+            return d.name;
           })
         )
-        .range([0, width]);
-      linegraph
+        .padding(0.2);
+      bar_graph
         .append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x))
@@ -60,38 +48,30 @@ export default {
         .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
 
-      // Add Y axis
       let y = d3
-        .scaleLog()
-        .domain([
-          1,
-          d3.max(linedata, function(d) {
-            return +d.value;
-          })
-        ])
+        .scaleLinear()
+        .domain([0, Math.ceil(data[0].latest / 100000) * 100000])
         .range([height, 0]);
-      linegraph.append("g").call(d3.axisLeft(y));
+      bar_graph.append("g").call(d3.axisLeft(y));
 
-      // Add the line
-      linegraph
-        .append("path")
-        .datum(linedata)
-        .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 2.5)
-        .attr(
-          "d",
-          d3
-            .line()
-            .x(function(d) {
-              return x(d.date);
-            })
-            .y(function(d) {
-              return y(d.value);
-            })
-        );
+      bar_graph
+        .selectAll("bars")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) {
+          return x(d.name);
+        })
+        .attr("y", function(d) {
+          return y(d.latest);
+        })
+        .attr("width", x.bandwidth())
+        .attr("height", function(d) {
+          return height - y(d.latest);
+        })
+        .attr("fill", "#69b3a2");
 
-      linegraph
+      bar_graph
         .append("text")
         .attr("x", width / 2)
         .attr("y", 0 - margin.top / 2)
