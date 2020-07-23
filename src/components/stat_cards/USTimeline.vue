@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TimelineLog from "@/components/stats/charts/TimelineLog.vue";
+import TimelineLog from "@/components/graphs/TimelineLog.vue";
 import statistics from '@/store/index.js'
 export default {
   components: {

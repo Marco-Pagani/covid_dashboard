@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Hero from './components/Hero.vue'
-import Cards from './components/Cards.vue'
+import Hero from '@/components/main_page/Hero.vue'
+import Cards from '@/components/main_page/Cards.vue'
 
 export default {
   name: 'App',
@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style src="./css/bulma.min.css"></style>
+<style src="@/styles/css/bulma.min.css"></style>
 
 <style lang="scss">
 #app {

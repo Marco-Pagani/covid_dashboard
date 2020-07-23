@@ -19,10 +19,10 @@
 
 <script>
 import { mapActions } from "vuex";
-import NumberSummary from "./stats/NumberSummary.vue";
-import TopCountries from "./stats/TopCountries.vue";
-import USTimeline from "./stats/USTimeline.vue";
-import StateTimelines from "./stats/StateTimelines.vue";
+import NumberSummary from "@/components/stat_cards/NumberSummary.vue";
+import TopCountries from "@/components/stat_cards/TopCountries.vue";
+import USTimeline from "@/components/stat_cards/USTimeline.vue";
+import StateTimelines from "@/components/stat_cards/StateTimelines.vue";
 export default {
   name: "Cards",
   components: {

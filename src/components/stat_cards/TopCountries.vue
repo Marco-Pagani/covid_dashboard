@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BarChart from "@/components/stats/charts/BarChart.vue";
+import BarChart from "@/components/graphs/BarChart.vue";
 import statistics from "@/store/index.js";
 export default {
   components: {

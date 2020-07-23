@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import StackedBars from '@/components/stats/charts/StackedBars.vue'
+import StackedBars from '@/components/graphs/StackedBars.vue'
 
 export default {
     name: 'NumberSummary',

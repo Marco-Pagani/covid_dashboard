@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import states from "@/utils/states.json";
-import TimelineLog from "@/components/stats/charts/TimelineLog.vue";
+import states from "@/data/states.json";
+import TimelineLog from "@/components/graphs/TimelineLog.vue";
 import moment from 'moment'
 
 import axios from "axios";
@@ -50,7 +50,7 @@ export default {
         // format response and save
         .then(res => {
           let data = res.data;
-             console.log(data)
+             // console.log(data)
           // strip fields that are not needed
           data = data
             .map(function(item) {
