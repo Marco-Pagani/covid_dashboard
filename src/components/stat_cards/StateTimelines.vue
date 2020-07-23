@@ -55,6 +55,7 @@ export default {
           data = data
             .map(function(item) {
               return {
+                //TODO do this without moment to save space
                 date: moment(item.date, 'YYYYMMDD').format('YYYY-MM-DD') + 'T00:00:00Z',
                 value: item.positive
               };
