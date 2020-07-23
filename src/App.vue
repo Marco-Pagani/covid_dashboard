@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <Hero />
+    <cards />
+  </div>
+</template>
+
+<script>
+import Hero from '@/components/main_page/Hero.vue'
+import Cards from '@/components/main_page/Cards.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Hero,
+    Cards
+  }
+}
+</script>
+
+<style src="@/styles/css/bulma.min.css"></style>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
