@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import mock_data from '@/store/dummy.json'
-import mock_state_data from '@/store/dummy_states.json'
+// import mock_data from '@/store/dummy.json'
+// import mock_state_data from '@/store/dummy_states.json'
 
 Vue.use(Vuex)
 
@@ -73,6 +73,7 @@ const statistics = new Vuex.Store({
           .catch(reject)
       })
     },
+    /*
     load_mocked({ commit }) {
       commit('START_LOAD')
       commit('LOAD_GLOBAL', mock_data)
@@ -83,6 +84,7 @@ const statistics = new Vuex.Store({
       commit('LOAD_US_TIMELINE', mock_state_data)
       commit('FINISH_LOAD')
     }
+    */
   },
   modules: {
   }
