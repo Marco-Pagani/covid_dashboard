@@ -53,7 +53,7 @@ const statistics = new Vuex.Store({
     load({ commit }) {
       return new Promise((resolve, reject) => {
         commit('START_LOAD')
-        axi.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=jhu&timelines=true').then(res => {
+        axi.get('https://covid-tracker-us.herokuapp.com/v2/locations?source=jhu&timelines=true').then(res => {
           commit('LOAD_GLOBAL', res.data)
           commit('FINISH_LOAD')
           //console.log('data retreived')
