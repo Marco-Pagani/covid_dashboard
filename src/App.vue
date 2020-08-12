@@ -1,6 +1,7 @@
 <template>
   <div>
     <Hero />
+    <USMap />
     <cards />
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import Hero from '@/components/main_page/Hero.vue'
 import Cards from '@/components/main_page/Cards.vue'
+import USMap from '@/components/graphs/US-map.vue'
 
 export default {
   name: 'App',
   components: {
     Hero,
-    Cards
+    Cards,
+    USMap
   }
 }
 </script>

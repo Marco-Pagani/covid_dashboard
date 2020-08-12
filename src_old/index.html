@@ -1,124 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Covid Stats Engine</title>
-    <link rel="stylesheet" href="css\bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  </head>
-  <body>
-    <section class="hero is-medium is-info">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="../">
-                            <img src="assets/logo.png" alt="Logo">
-                        </a>
-                        <span class="navbar-burger burger" data-target="navbarMenu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
-                    <div id="navbarMenu" class="navbar-menu">
-                        <div class="navbar-end">
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="#">
-                                    <span class="icon">
-                                        <i class="fas fa-question-circle"></i>
-                                    </span>
-                                    <span>Help</span>
-                                </a>
-                            </span>
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="https://github.com/Marco-Pagani/covid_dashboard">
-                                    <span class="icon">
-                                        <i class="fab fa-github"></i>
-                                    </span>
-                                    <span>View Source</span>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            </div>
-
-            <div class="hero-body ">
-                <div class="container has-text-centered ">
-                    <div class="columns is-centered">
-                    <div class="column is-four-fifths">
-                        <h1 class="title is-size-1">
-                            Coronavirus: Visualized<br>
-                        </h1>
-                        <h2 class="subtitle">
-                            Ask about the latests stats for the Coronavirus pandemic and get up-to-date graphics that help you understand the state of the world.
-                        </h2>
-                        <div class="box">
-                            <div class="field has-addons ">
-                                <div class="control has-icons-left is-expanded">
-                                    <input class="input is-medium" type="text" placeholder="Search coming soon">
-                                    <span class="icon is-left">
-                                        <i class="fas fa-search"></i>
-                                      </span>
-                                    </div>
-                                <div class="control">
-                                    <a class="button is-medium is-info" disabled>
-                                        Search
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-    </section>
-    <section class="section">
-        
-    <div class="container">
-        <div class="card"> <div class="card-image">
-            <div id="summary"></div>
-        </div>
-        <div class="card-content">
-            <p class="title is-size-1 has-text-weight-semibold">
-                There have been <span class="has-text-weight-bold" id="total">?</span> cases of Coronavirus worldwide. Of those, <span class="has-text-warning has-text-weight-bold"id="cases">?</span> are currently active, <span class="has-text-danger has-text-weight-bold" id="deaths">?</span> people have died, and <span class="has-text-success has-text-weight-bold" id="recovered">?</span> have recovered.
-            </p>
-        </div>
-        <!--
-            <h2 class="subtitle is-size-1 has-text-weight-semibold">
-                <span class="has-text-weight-bold" id="total">?</span> people have been directly impacted by Coronavirus. There are currently <span class="has-text-warning"id="cases">?</span> cases of COVID19 worldwide. <span class="has-text-danger" id="deaths">?</span> people have died, and <span class="has-text-success" id="recovered">?</span> have recovered so far.
-              </h2>
-              -->
-        </div>
-    </div>
-        
-    <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-half">
-                <div class="card" id="cases_by_country">
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="card" id="us_timeline">
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
-    <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Data</strong> Sourced from <a href="https://github.com/ExpDev07/coronavirus-tracker-api" >ExpDev's Covid tracker API</a>. <strong>Visualizations</strong> by <a href="https://pagani.io">Marco Pagani</a>. Stay safe out there &hearts;
-          </p>
-        </div>
-      </footer>
-
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!-- <script async type="text/javascript" src="../js/bulma.js"></script> -->
-    <script src="js/draw.js"></script>
+</head>
+
+<body>
+    works
+    <div id="svg" />
+    <script>
+        var svg = d3.select("#svg")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        var path = d3.geoPath()
+
+        d3.json("./states-albers-10m.json", function(data){
+            console.log(data)
+        })
+
+    </script>
 </body>
+
 </html>
