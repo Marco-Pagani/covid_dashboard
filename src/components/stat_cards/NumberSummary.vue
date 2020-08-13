@@ -1,10 +1,13 @@
 <template>
   <div>
     <div class="card">
-      <div class="card-image">
-        <StackedBars :data="this.chartData" />
-      </div>
       <div class="card-content">
+      <div class="columns is-vcentered">
+        <div class="column is-4">
+        <PieChart id="pie" radius="100" />
+        </div>
+        
+        <div class="column ">
         <p class="title is-size-1 has-text-weight-semibold">
           There have been
           <span class="has-text-weight-bold" id="total">{{this.total_cases}}</span> 
@@ -17,17 +20,19 @@
           have recovered.
         </p>
       </div>
+      </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import StackedBars from '@/components/graphs/StackedBars.vue'
+import PieChart from '@/components/graphs/pie-chart.vue'
 
 export default {
     name: 'NumberSummary',
     components: {
-        StackedBars
+        PieChart
     },
   computed: {
     latest() {

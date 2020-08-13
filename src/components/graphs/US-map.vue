@@ -1,5 +1,7 @@
 <template>
+<section class="section">
   <div id="map" />
+</section>
 </template>
 
 <script>
@@ -51,7 +53,7 @@ export default {
       data.forEach(function (value) {
         maxCases = Math.max(maxCases, value.cases);
       });
-      let color = d3.scaleQuantize([0, maxCases], d3.schemeReds[6]);
+      let colorScale = d3.scaleSequentialSqrt().domain([0, maxCases]).interpolator(d3.interpolateReds);
 
       // create svg
       let _svg = d3
@@ -66,14 +68,14 @@ export default {
         .selectAll("path")
         .data(topojson.feature(us, us.objects.states).features)
         .join("path")
-        .attr("fill", (d) => color(data.get(d.id).cases))
+        .attr("fill", (d) => colorScale(data.get(d.id).cases))
         .attr("d", path)
         .on("mouseenter", function () {
           //console.log(this)
           d3.select(this).attr("fill", d3.interpolateBlues(0.5));
         })
         .on("mouseout", function () {
-          d3.select(this).attr("fill", (d) => color(data.get(d.id).cases));
+          d3.select(this).attr("fill", (d) => colorScale(data.get(d.id).cases));
         })
         .on("click", (d) => {
           this.selectState(d.id);
@@ -102,11 +104,6 @@ export default {
         .attr("stroke-linejoin", "round")
         .attr("d", path);
     },
-    /*
-    selected() {
-      d3.select('.selected').classed('selected', false);
-      d3.select(this).classed('selected', true);
-    }*/
   },
 };
 </script>

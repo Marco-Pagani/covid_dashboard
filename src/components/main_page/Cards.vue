@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="tabs is-centered is-large">
+  <ul>
+    <li :class="{ 'is-active': this.activeTab == 0}" @click="setActive(0)"><a>National Data</a></li>
+    <li :class="{ 'is-active': this.activeTab == 1}" @click="setActive(1)"><a>State Data</a></li>
+  </ul>
+</div>
+<div v-show="this.activeTab == 0">
     <section class="section">
       <div class="container">
         <NumberSummary />
@@ -14,6 +21,7 @@
         </div>
       </div>
     </section>
+    </div>
   </div>
 </template>
 
@@ -31,8 +39,16 @@ export default {
     USTimeline,
     StateTimelines
   },
+  data() {
+    return {
+      activeTab: 0
+    }
+  },
   methods: {
-    ...mapActions([])
+    ...mapActions([]),
+    setActive(n){
+      this.activeTab = n
+    }
   },
   mounted() {
     if (!window.webpackHotUpdate) {
