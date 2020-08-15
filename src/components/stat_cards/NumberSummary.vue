@@ -36,20 +36,19 @@ export default {
     },
   computed: {
     latest() {
-      return this.$store.state.global_stats.latest;
+      return 10;
     },
     total_cases () {
-        return this.latest.confirmed
+      return 10;
     },
     active_cases() {
-        let latest = this.latest
-        return latest.confirmed - latest.deaths - latest.recovered
+      return 10;
     },
     deaths() {
-        return this.latest.deaths
+      return 10;
     },
     recovered () {
-        return this.latest.recovered
+      return 10;
     },
     chartData() {
         return [

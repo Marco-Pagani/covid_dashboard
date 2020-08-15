@@ -8,7 +8,7 @@
 import * as d3 from "d3";
 import * as topojson from "topojson";
 import us from "@/data/states-albers-10m.json";
-
+import { mapMutations } from 'vuex'
 import axios from "axios";
 const axi = axios.create();
 
@@ -22,6 +22,9 @@ export default {
     this.getData();
   },
   methods: {
+     ...mapMutations([
+      'SET_SELECTED'
+     ]),
     getData() {
       axi
         .get("https://api.covidtracking.com/v1/states/current.json")
@@ -43,8 +46,9 @@ export default {
         });
     },
     selectState(id) {
-      console.log(id);
+      this.$store.commit('SET_SELECTED', id)
       this.selected = id;
+      console.log(id)
     },
     draw(data) {
       // heavily derived from https://observablehq.com/@d3/state-choropleth
@@ -77,14 +81,13 @@ export default {
         .on("mouseout", function () {
           d3.select(this).attr("fill", (d) => colorScale(data.get(d.id).cases));
         })
-        .on("click", (d) => {
+        .on("click", (d, i, nodes) => {
+          // update vue store
           this.selectState(d.id);
-        })
-        .on("click", function() {
-          console.log("click")
+          // reflect selection on map
           d3.select(".selected").classed("selected", false);
-          d3.select(this).classed("selected", true);
-        });
+           d3.select(nodes[i]).classed("selected", true);
+        })
 
       // add state borders
       _svg
