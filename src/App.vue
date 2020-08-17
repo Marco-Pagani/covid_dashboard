@@ -1,7 +1,7 @@
 <template>
   <div>
     <Hero />
-    <USMap />
+    <USMap id="usmap" />
     <cards />
   </div>
 </template>

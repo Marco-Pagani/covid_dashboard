@@ -7,14 +7,8 @@ import * as d3 from "d3";
 
 export default {
   props: ["payload", "id", "radius"],
-  mounted() {
-      this.draw([],[])
-  },
   methods: {
     draw(data, colors) {
-      data = [ 3000, 100, 500];
-      colors = ["hsl(48, 100%, 67%)", "hsl(141, 71%, 48%)", "hsl(348, 100%, 61%)"];
-
       let 
         sideLength = 450,
         margin = 40;

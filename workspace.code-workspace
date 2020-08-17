@@ -1,8 +1,16 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+"settings": {
+	"vetur.experimental.templateInterpolationService": true,
+	"vetur.format.defaultFormatter.js": "prettier-eslint",
+	"vetur.format.defaultFormatter.html": "prettier",
+	"eslint.alwaysShowStatus": true,
+	"prettier.endOfLine": "auto",
+	"prettier.singleQuote": true,
+	"prettier.semi": false
+}
 }

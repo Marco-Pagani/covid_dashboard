@@ -1,26 +1,34 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-content">
+  <div class="card">
+    <div class="card-content">
       <div class="columns is-vcentered">
         <div class="column is-4">
-        <PieChart id="pie" radius="100" />
+          <PieChart id="pie" radius="100" ref="graph" />
         </div>
-        
-        <div class="column ">
-        <p class="title is-size-1 has-text-weight-semibold">
-          There have been
-          <span class="has-text-weight-bold" id="total">{{this.total_cases}}</span> 
-          cases of Coronavirus worldwide. Of those,
-          <span class="has-text-warning has-text-weight-bold" id="cases">{{this.active_cases}}</span> 
-          are currently active,
-          <span class="has-text-danger has-text-weight-bold" id="deaths">{{this.deaths}}</span> 
-          people have died, and
-          <span class="has-text-success has-text-weight-bold" id="recovered">{{this.recovered}}</span> 
-          have recovered.
-        </p>
-      </div>
-      </div>
+
+        <div class="column">
+          <p class="title is-size-1 has-text-weight-semibold">
+            There have been
+            <span class="has-text-weight-bold" id="total">{{
+              this.total_cases | formatted_number
+            }}</span>
+            confirmed cases of Coronavirus in the United States. Of those,
+            <span class="has-text-warning has-text-weight-bold" id="cases">{{
+              this.active_cases | formatted_number
+            }}</span>
+            are active cases,
+            <span class="has-text-danger has-text-weight-bold" id="deaths">{{
+              this.deaths | formatted_number
+            }}</span>
+            people have died, and
+            <span
+              class="has-text-success has-text-weight-bold"
+              id="recovered"
+              >{{ this.recovered | formatted_number }}</span
+            >
+            have recovered.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -28,48 +36,70 @@
 
 <script>
 import PieChart from '@/components/graphs/pie-chart.vue'
+import { formatNumber } from '@/utils/data_helper.js'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
-    name: 'NumberSummary',
-    components: {
-        PieChart
-    },
-  computed: {
-    latest() {
-      return 10;
-    },
-    total_cases () {
-      return 10;
-    },
-    active_cases() {
-      return 10;
-    },
-    deaths() {
-      return 10;
-    },
-    recovered () {
-      return 10;
-    },
-    chartData() {
-        return [
-            {
-                type: 'total',
-                value: this.total_cases
-            },
-            {
-                type: 'cases',
-                value: this.active_cases
-            },
-            {
-                type: 'deaths',
-                value: this.deaths
-            },
-            {
-                type: 'recovered',
-                value: this.recovered
-            }
-        ]
+  name: 'NumberSummary',
+  components: {
+    PieChart,
+  },
+
+  data() {
+    return {
+      data_source: 'national_current',
+      total_cases: '???',
+      active_cases: '???',
+      deaths: '???',
+      recovered: '???',
+      colors: [
+        'hsl(48, 100%, 67%)',
+        'hsl(141, 71%, 48%)',
+        'hsl(348, 100%, 61%)',
+      ],
     }
-  }
-};
+  },
+  mounted() {
+    this.fetch_data({
+      type: this.data_source,
+    })
+  },
+  computed: {
+    ...mapState({
+      api_data(state) {
+        return state.api_data[this.data_source].data
+      },
+      data_loaded(state) {
+        return !state.api_data[this.data_source].loading
+      },
+    }),
+  },
+  watch: {
+    data_loaded(ready) {
+      if (ready) {
+        this.active_cases = this.api_data[0].positive
+        this.deaths = this.api_data[0].death
+        this.recovered = this.api_data[0].recovered
+        this.total_cases = this.active_cases + this.deaths + this.recovered
+
+        this.$refs.graph.draw(this.format_data(), this.colors)
+      }
+    },
+  },
+  methods: {
+    ...mapMutations({ set_selected: 'SET_SELECTED' }),
+    ...mapActions(['fetch_data']),
+    format_display(number) {
+      return formatNumber(number)
+    },
+    format_data() {
+      return [this.active_cases, this.recovered, this.deaths]
+    },
+  },
+  filters: {
+    formatted_number(n) {
+      return formatNumber(n)
+    },
+  },
+}
 </script>

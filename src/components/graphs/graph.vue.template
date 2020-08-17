@@ -1,0 +1,54 @@
+<template>
+  <section class="section">
+    <div :id="this.id" />
+  </section>
+</template>
+
+<script>
+import * as d3 from 'd3'
+import { mapState, mapMutations, mapActions } from 'vuex'
+
+export default {
+  props: ['id'],
+  data() {
+    return {
+      data_source: '',
+    }
+  },
+  mounted() {
+    this.fetch_data({
+      type: this.data_source,
+    })
+  },
+  computed: {
+    ...mapState({
+      api_data (state)  {return state.api_data[this.data_source].data},
+      data_loaded (state)  {return !state.api_data[this.data_source].loading},
+    }),
+  },
+  watch: {
+    data_loaded(ready) {
+      if (ready) {
+        this.draw(this.format_data(this.api_data))
+      }
+    },
+  },
+  methods: {
+    ...mapMutations({ set_selected: 'SET_SELECTED' }),
+    ...mapActions(['fetch_data']),
+    format_data(data) {
+      return {}
+    },
+    draw(data) {
+      // create svg
+      let _svg = d3
+        .select('#' + this.id)
+        .append('svg')
+        .attr('viewBox', [0, 0, 500, 500])
+    },
+  },
+}
+</script>
+
+<style>
+</style>
