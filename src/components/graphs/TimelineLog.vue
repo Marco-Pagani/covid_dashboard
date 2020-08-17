@@ -11,8 +11,6 @@ export default {
     payload: {
       handler(value) {
         if (value.ready) {
-          // console.log(value.title)
-          // console.log(value.data)
           this.draw(value.title, value.data);
         }
       },

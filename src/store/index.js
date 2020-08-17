@@ -10,81 +10,88 @@ const axi = axios.create()
 
 const statistics = new Vuex.Store({
   state: {
-    loading: true,
-    state_loading: true,
-    global_stats: {
-      latest: {
-        confirmed: 1000,
-        deaths: 200,
-        recovered: 60
+    selected_state: '',
+    api_data: {
+      national_current: {
+        loading: false,
+        data: {}
       },
-      locations: []
-    },
-    us_stats: {
-      latest: {},
-      timeline: []
+      national_historic: {
+        loading: false,
+        data: {}
+      },
+      states_current: {
+        loading: false,
+        data: {}
+      },
+      states_historic: {
+        loading: false,
+        data: {}
+      }
     }
-    
+
   },
   mutations: {
-    LOAD_GLOBAL(state, payload) {
-      state.global_stats = payload
+    SET_SELECTED(state, selected) {
+      state.selected_state = selected
     },
-    LOAD_US_LATEST(state, payload) {
-      state.us_stats.latest = payload
+    START_LOAD(state, type) {
+      state.api_data[type].loading = true;
     },
-    LOAD_US_TIMELINE(state, payload) {
-      state.us_stats.timeline = payload
+    FINISH_LOAD(state, type) {
+      state.api_data[type].loading = false;
     },
-    START_LOAD(state) {
-      state.loading = true
-    },
-    FINISH_LOAD(state) {
-      state.loading = false
-    },
-    START_LOAD_STATES(state) {
-      state.state_loading = true
-    },
-    FINISH_LOAD_STATES(state) {
-      state.state_loading = false
-    },
+    SET_DATA(state, payload) {
+      state.api_data[payload.type].data = payload.data;
+    }
   },
   actions: {
-    load({ commit }) {
-      return new Promise((resolve, reject) => {
-        commit('START_LOAD')
-        axi.get('https://covid-tracker-us.herokuapp.com/v2/locations?source=jhu&timelines=true').then(res => {
-          commit('LOAD_GLOBAL', res.data)
-          commit('FINISH_LOAD')
-          //console.log('data retreived')
-        })
-          .then(resolve)
-          .catch(reject)
-      })
-    },
-    load_states({ commit }) {
-      return new Promise((resolve, reject) => {
-        commit('START_LOAD_STATES')
-        axi.get('https://covidtracking.com/api/v1/states/daily.json').then(res => {
-          commit('LOAD_US_TIMELINE', res.data)
-          commit('FINISH_LOAD_STATES')
-        })
-          .then(resolve)
-          .catch(reject)
-      })
-    },
     /*
-    load_mocked({ commit }) {
-      commit('START_LOAD')
-      commit('LOAD_GLOBAL', mock_data)
-      commit('FINISH_LOAD')
-    },
-    load_mocked_states({ commit }) {
-      commit('START_LOAD')
-      commit('LOAD_US_TIMELINE', mock_state_data)
-      commit('FINISH_LOAD')
+    payload: {
+      type: national_current,national_historic,states_current,state_historic
+      state: lowercase state abbreviation
     }
     */
+    fetch_data({ commit, state }, payload) {
+      let type = payload.type
+      let api_path = ''
+
+      // OK, lets try to minimize the number of api calls
+      // first, check if another component is already loading this data
+      if (state.api_data[type].loading) {
+        return;
+      }
+      // next, check if we already loaded data into the store
+      if (Object.keys(state.api_data[type].data).length) {
+        return;
+      }
+
+      // if not, we have to load the store ourselves
+      commit('START_LOAD', type)
+
+      // check if the user has this data cached already
+      // TODO
+
+      // finally, if all else fails we will have to call the API
+
+      switch (type) {
+        case 'national_current':
+          api_path = 'us/current.json'
+          break
+        case 'national_historic':
+          api_path = 'us/daily.json'
+          break
+        case 'states_current':
+          api_path = 'states/current.json'
+          break
+      }
+
+      axi.get("https://api.covidtracking.com/v1/" + api_path)
+        .then((res) => {
+          commit('SET_DATA', { type: type, data: res.data })
+          commit('FINISH_LOAD', type)
+        })
+    }
   },
   modules: {
   }
