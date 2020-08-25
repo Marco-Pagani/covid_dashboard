@@ -60,9 +60,13 @@ export default {
     }
   },
   mounted() {
-    this.fetch_data({
-      type: this.data_source,
+    if(this.touched){
+      this.format_data()
+    } else{
+      this.fetch_data({
+        type: this.data_source,
     })
+    }
   },
   computed: {
     ...mapState({
@@ -72,17 +76,15 @@ export default {
       data_loaded(state) {
         return !state.api_data[this.data_source].loading
       },
+      touched(state) {
+        return state.api_data[this.data_source].touched
+      }
     }),
   },
   watch: {
     data_loaded(ready) {
       if (ready) {
-        this.active_cases = this.api_data[0].positive
-        this.deaths = this.api_data[0].death
-        this.recovered = this.api_data[0].recovered
-        this.total_cases = this.active_cases + this.deaths + this.recovered
-
-        this.$refs.graph.draw(this.format_data(), this.colors)
+        this.format_data()
       }
     },
   },
@@ -93,7 +95,12 @@ export default {
       return formatNumber(number)
     },
     format_data() {
-      return [this.active_cases, this.recovered, this.deaths]
+      this.active_cases = this.api_data[0].positive
+      this.deaths = this.api_data[0].death
+      this.recovered = this.api_data[0].recovered
+      this.total_cases = this.active_cases + this.deaths + this.recovered
+      let chart_data = [this.active_cases, this.recovered, this.deaths]
+      this.$refs.graph.draw(chart_data, this.colors)
     },
   },
   filters: {

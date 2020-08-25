@@ -2,20 +2,20 @@
   <div>
     <Hero />
     <USMap id="usmap" />
-    <cards />
+    <tabs />
   </div>
 </template>
 
 <script>
 import Hero from '@/components/main_page/Hero.vue'
-import Cards from '@/components/main_page/Cards.vue'
+import Tabs from '@/components/main_page/Tabs.vue'
 import USMap from '@/components/graphs/US-map.vue'
 
 export default {
   name: 'App',
   components: {
     Hero,
-    Cards,
+    Tabs,
     USMap
   }
 }

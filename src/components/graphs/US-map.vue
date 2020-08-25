@@ -8,7 +8,7 @@
 import * as d3 from 'd3'
 import * as topojson from 'topojson'
 import us from '@/data/states-albers-10m.json'
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   props: ['id'],
@@ -36,8 +36,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({ set_selected: 'SET_SELECTED' }),
-    ...mapActions(['fetch_data']),
+    ...mapActions(['fetch_data', 'set_state']),
     format_data(data) {
       return new Map(
         data.map((state) => [
@@ -87,7 +86,7 @@ export default {
         })
         .on('click', (d, i, nodes) => {
           // update vue store
-          this.set_selected(d.id)
+          this.set_state({state: d.id})
           // reflect selection on map
           d3.select('.selected').classed('selected', false)
           d3.select(nodes[i]).classed('selected', true)
