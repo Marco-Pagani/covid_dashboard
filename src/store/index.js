@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 import { state_id_to_abbr } from '@/utils/data_helper.js'
+import states from '@/data/states.json'
 // import mock_data from '@/store/dummy.json'
 // import mock_state_data from '@/store/dummy_states.json'
 
@@ -33,6 +34,11 @@ const statistics = new Vuex.Store({
         states: {},
         loading: false
       }
+    },
+    computed_data: {
+      cases: {},
+      testing: {},
+      deaths: {}
     }
 
   },
@@ -63,6 +69,28 @@ const statistics = new Vuex.Store({
         touched: false,
         data: {}
       }
+    },
+    COMPUTE_DATA(state) {
+      console.log(state)
+      let api_data = state.api_data.states_current.data
+
+      let state_data = Object.entries(states)
+
+      state_data.forEach(us_state => {
+        let data = api_data.find(e => e.fips == us_state[0])
+        console.log(data)
+        state.computed_data.cases[us_state[0]] = {
+          vs_population: data.positive / us_state[1].population,
+
+        }
+        state.computed_data.testing[us_state[0]] = {
+          vs_population: (data.positive + data.negative) / us_state[1].population,
+          ratio_positive: data.positive / (data.positive + data.negative)
+        }
+        state.computed_data.deaths[us_state[0]] = {
+          vs_population: data.death / us_state[1].population,
+        }
+      })
     }
   },
   actions: {
@@ -128,6 +156,8 @@ const statistics = new Vuex.Store({
           if (payload.state)
             data_payload['state'] = payload.state
           commit('SET_DATA', data_payload)
+          if (type === 'states_current')
+            commit('COMPUTE_DATA')
           commit('FINISH_LOAD', data_payload)
           commit('TOUCH', data_payload)
         })

@@ -1,202 +1,252 @@
 {
-  "01": {
-    "abbreviation": "AL",
-    "name": "Alabama"
-  },
-  "02": {
-    "abbreviation": "AK",
-    "name": "Alaska"
-  },
-  "04": {
-    "abbreviation": "AZ",
-    "name": "Arizona"
-  },
-  "05": {
-    "abbreviation": "AR",
-    "name": "Arkansas"
-  },
-  "06": {
-    "abbreviation": "CA",
-    "name": "California"
-  },
-  "08": {
-    "abbreviation": "CO",
-    "name": "Colorado"
-  },
-  "09": {
-    "abbreviation": "CT",
-    "name": "Connecticut"
-  },
   "10": {
-    "abbreviation": "DE",
-    "name": "Delaware"
+    "name": "Delaware",
+    "population": 967171,
+    "abbreviation": "DE"
   },
   "12": {
-    "abbreviation": "FL",
-    "name": "Florida"
+    "name": "Florida",
+    "population": 21299325,
+    "abbreviation": "FL"
   },
   "13": {
-    "abbreviation": "GA",
-    "name": "Georgia"
+    "name": "Georgia",
+    "population": 10519475,
+    "abbreviation": "GA"
   },
   "15": {
-    "abbreviation": "HI",
-    "name": "Hawaii"
+    "name": "Hawaii",
+    "population": 1420491,
+    "abbreviation": "HI"
   },
   "16": {
-    "abbreviation": "ID",
-    "name": "Idaho"
+    "name": "Idaho",
+    "population": 1754208,
+    "abbreviation": "ID"
   },
   "17": {
-    "abbreviation": "IL",
-    "name": "Illinois"
+    "name": "Illinois",
+    "population": 12741080,
+    "abbreviation": "IL"
   },
   "18": {
-    "abbreviation": "IN",
-    "name": "Indiana"
+    "name": "Indiana",
+    "population": 6691878,
+    "abbreviation": "IN"
   },
   "19": {
-    "abbreviation": "IA",
-    "name": "Iowa"
+    "name": "Iowa",
+    "population": 3156145,
+    "abbreviation": "IA"
   },
   "20": {
-    "abbreviation": "KS",
-    "name": "Kansas"
+    "name": "Kansas",
+    "population": 2911510,
+    "abbreviation": "KS"
   },
   "21": {
-    "abbreviation": "KY",
-    "name": "Kentucky"
+    "name": "Kentucky",
+    "population": 4468402,
+    "abbreviation": "KY"
   },
   "22": {
-    "abbreviation": "LA",
-    "name": "Louisiana"
+    "name": "Louisiana",
+    "population": 4659978,
+    "abbreviation": "LA"
   },
   "23": {
-    "abbreviation": "ME",
-    "name": "Maine"
+    "name": "Maine",
+    "population": 1338404,
+    "abbreviation": "ME"
   },
   "24": {
-    "abbreviation": "MD",
-    "name": "Maryland"
+    "name": "Maryland",
+    "population": 6042718,
+    "abbreviation": "MD"
   },
   "25": {
-    "abbreviation": "MA",
-    "name": "Massachusetts"
+    "name": "Massachusetts",
+    "population": 6902149,
+    "abbreviation": "MA"
   },
   "26": {
-    "abbreviation": "MI",
-    "name": "Michigan"
+    "name": "Michigan",
+    "population": 9995915,
+    "abbreviation": "MI"
   },
   "27": {
-    "abbreviation": "MN",
-    "name": "Minnesota"
+    "name": "Minnesota",
+    "population": 5611179,
+    "abbreviation": "MN"
   },
   "28": {
-    "abbreviation": "MS",
-    "name": "Mississippi"
+    "name": "Mississippi",
+    "population": 2986530,
+    "abbreviation": "MS"
   },
   "29": {
-    "abbreviation": "MO",
-    "name": "Missouri"
+    "name": "Missouri",
+    "population": 6126452,
+    "abbreviation": "MO"
   },
   "30": {
-    "abbreviation": "MT",
-    "name": "Montana"
+    "name": "Montana",
+    "population": 1062305,
+    "abbreviation": "MT"
   },
   "31": {
-    "abbreviation": "NE",
-    "name": "Nebraska"
+    "name": "Nebraska",
+    "population": 1929268,
+    "abbreviation": "NE"
   },
   "32": {
-    "abbreviation": "NV",
-    "name": "Nevada"
+    "name": "Nevada",
+    "population": 3034392,
+    "abbreviation": "NV"
   },
   "33": {
-    "abbreviation": "NH",
-    "name": "New Hampshire"
+    "name": "New Hampshire",
+    "population": 1356458,
+    "abbreviation": "NH"
   },
   "34": {
-    "abbreviation": "NJ",
-    "name": "New Jersey"
+    "name": "New Jersey",
+    "population": 8908520,
+    "abbreviation": "NJ"
   },
   "35": {
-    "abbreviation": "NM",
-    "name": "New Mexico"
+    "name": "New Mexico",
+    "population": 2095428,
+    "abbreviation": "NM"
   },
   "36": {
-    "abbreviation": "NY",
-    "name": "New York"
+    "name": "New York",
+    "population": 19542209,
+    "abbreviation": "NY"
   },
   "37": {
-    "abbreviation": "NC",
-    "name": "North Carolina"
+    "name": "North Carolina",
+    "population": 10383620,
+    "abbreviation": "NC"
   },
   "38": {
-    "abbreviation": "ND",
-    "name": "North Dakota"
+    "name": "North Dakota",
+    "population": 760077,
+    "abbreviation": "ND"
   },
   "39": {
-    "abbreviation": "OH",
-    "name": "Ohio"
+    "name": "Ohio",
+    "population": 11689442,
+    "abbreviation": "OH"
   },
   "40": {
-    "abbreviation": "OK",
-    "name": "Oklahoma"
+    "name": "Oklahoma",
+    "population": 3943079,
+    "abbreviation": "OK"
   },
   "41": {
-    "abbreviation": "OR",
-    "name": "Oregon"
+    "name": "Oregon",
+    "population": 4190713,
+    "abbreviation": "OR"
   },
   "42": {
-    "abbreviation": "PA",
-    "name": "Pennsylvania"
+    "name": "Pennsylvania",
+    "population": 12807060,
+    "abbreviation": "PA"
   },
   "44": {
-    "abbreviation": "RI",
-    "name": "Rhode Island"
+    "name": "Rhode Island",
+    "population": 1057315,
+    "abbreviation": "RI"
   },
   "45": {
-    "abbreviation": "SC",
-    "name": "South Carolina"
+    "name": "South Carolina",
+    "population": 5084127,
+    "abbreviation": "SC"
   },
   "46": {
-    "abbreviation": "SD",
-    "name": "South Dakota"
+    "name": "South Dakota",
+    "population": 882235,
+    "abbreviation": "SD"
   },
   "47": {
-    "abbreviation": "TN",
-    "name": "Tennessee"
+    "name": "Tennessee",
+    "population": 6770010,
+    "abbreviation": "TN"
   },
   "48": {
-    "abbreviation": "TX",
-    "name": "Texas"
+    "name": "Texas",
+    "population": 28701845,
+    "abbreviation": "TX"
   },
   "49": {
-    "abbreviation": "UT",
-    "name": "Utah"
+    "name": "Utah",
+    "population": 3161105,
+    "abbreviation": "UT"
   },
   "50": {
-    "abbreviation": "VT",
-    "name": "Vermont"
+    "name": "Vermont",
+    "population": 626299,
+    "abbreviation": "VT"
   },
   "51": {
-    "abbreviation": "VA",
-    "name": "Virginia"
+    "name": "Virginia",
+    "population": 8517685,
+    "abbreviation": "VA"
   },
   "53": {
-    "abbreviation": "WA",
-    "name": "Washington"
+    "name": "Washington",
+    "population": 7535591,
+    "abbreviation": "WA"
   },
   "54": {
-    "abbreviation": "WV",
-    "name": "West Virginia"
+    "name": "West Virginia",
+    "population": 1805832,
+    "abbreviation": "WV"
   },
   "55": {
-    "abbreviation": "WI",
-    "name": "Wisconsin"
+    "name": "Wisconsin",
+    "population": 5813568,
+    "abbreviation": "WI"
   },
   "56": {
-    "abbreviation": "WY",
-    "name": "Wyoming"
+    "name": "Wyoming",
+    "population": 577737,
+    "abbreviation": "WY"
+  },
+  "01": {
+    "name": "Alabama",
+    "population": 4887871,
+    "abbreviation": "AL"
+  },
+  "02": {
+    "name": "Alaska",
+    "population": 737438,
+    "abbreviation": "AK"
+  },
+  "04": {
+    "name": "Arizona",
+    "population": 7171646,
+    "abbreviation": "AZ"
+  },
+  "05": {
+    "name": "Arkansas",
+    "population": 3013825,
+    "abbreviation": "AR"
+  },
+  "06": {
+    "name": "California",
+    "population": 39557045,
+    "abbreviation": "CA"
+  },
+  "08": {
+    "name": "Colorado",
+    "population": 5695564,
+    "abbreviation": "CO"
+  },
+  "09": {
+    "name": "Connecticut",
+    "population": 3572665,
+    "abbreviation": "CT"
   }
 }
