@@ -6,21 +6,9 @@
 import * as d3 from "d3";
 
 export default {
-  props: ["payload", "id"],
-  watch: {
-    payload: {
-      handler(value) {
-        if (value.ready) {
-          this.draw(value.title, value.data);
-        }
-      },
-      deep: true
-    }
-  },
+  props: ["id"],
   methods: {
     draw(title, data) {
-      // console.log("chart got data:");
-      //console.log(data);
       let margin = { top: 50, right: 40, bottom: 80, left: 80 },
         width = 450 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
@@ -33,25 +21,15 @@ export default {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      let linedata = [];
-      Object.keys(data).map(function(key) {
-        linedata.push({
-          date: d3.timeParse("%Y-%m-%dT%H:%M:%SZ")(key),
-          value: data[key]
-        });
-      });
-
-      // console.log(linedata);
-
-      // Add X axis --> it is a date format
       let x = d3
         .scaleTime()
         .domain(
-          d3.extent(linedata, function(d) {
+          d3.extent(data, function(d) {
             return d.date;
           })
         )
-        .range([0, width]);
+        .range([0, width])
+        .nice();
       linegraph
         .append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -65,17 +43,18 @@ export default {
         .scaleLog()
         .domain([
           1,
-          d3.max(linedata, function(d) {
+          d3.max(data, function(d) {
             return +d.value;
           })
         ])
-        .range([height, 0]);
+        .range([height, 0])
+        .nice();
       linegraph.append("g").call(d3.axisLeft(y));
 
       // Add the line
       linegraph
         .append("path")
-        .datum(linedata)
+        .datum(data)
         .attr("fill", "none")
         .attr("stroke", "steelblue")
         .attr("stroke-width", 2.5)
@@ -84,6 +63,7 @@ export default {
           d3
             .line()
             .x(function(d) {
+              // console.log(x(d.date))
               return x(d.date);
             })
             .y(function(d) {

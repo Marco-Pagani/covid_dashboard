@@ -7,3 +7,7 @@ export function formatNumber(num) {
 export function state_id_to_name(id) {
     return states[id].name
 }
+
+export function state_id_to_abbr(id) {
+    return states[id].abbreviation.toLowerCase()
+}
