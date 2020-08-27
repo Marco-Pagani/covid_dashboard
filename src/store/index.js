@@ -78,10 +78,9 @@ const statistics = new Vuex.Store({
 
       state_data.forEach(us_state => {
         let data = api_data.find(e => e.fips == us_state[0])
-        console.log(data)
         state.computed_data.cases[us_state[0]] = {
           vs_population: data.positive / us_state[1].population,
-
+          in_hundred_thou: (data.positive / us_state[1].population) * 100000
         }
         state.computed_data.testing[us_state[0]] = {
           vs_population: (data.positive + data.negative) / us_state[1].population,
@@ -89,6 +88,7 @@ const statistics = new Vuex.Store({
         }
         state.computed_data.deaths[us_state[0]] = {
           vs_population: data.death / us_state[1].population,
+          ratio_of_cases: data.death / (data.positive + data.recovered)
         }
       })
     }

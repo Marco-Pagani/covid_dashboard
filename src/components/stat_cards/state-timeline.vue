@@ -1,10 +1,6 @@
 <template>
-  <div class="column is-one-third">
-    <div class="card">
-      <div class="card-content">
-        <timeline-log id="state_timeline" ref="graph" />
-      </div>
-    </div>
+  <div>
+    <timeline-log id="state_timeline" ref="graph" />
   </div>
 </template>
 
