@@ -50,6 +50,15 @@ export default {
       activeTab: 0,
     }
   },
+  computed: {
+    selected_state() { return this.$store.state.selected_state; },
+  },
+  watch: {
+    selected_state(cur, prev){
+      if(prev === '')
+        this.activeTab=1
+    }
+  },
   methods: {
     setActive(n) {
       this.activeTab = n
