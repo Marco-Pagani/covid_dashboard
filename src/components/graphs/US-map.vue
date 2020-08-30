@@ -5,10 +5,12 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3Base from 'd3'
+import {legendColor} from 'd3-svg-legend'
 import * as topojson from 'topojson'
 import us from '@/data/states-albers-10m.json'
 import { mapState, mapActions } from 'vuex'
+const d3 = Object.assign(d3Base, {legendColor})
 
 export default {
   props: ['id'],
@@ -52,13 +54,14 @@ export default {
     },
     draw(data) {
       // heavily derived from https://observablehq.com/@d3/state-choropleth
+      let width = 975, height = 610
       // color scale
       let maxCases = 0
       data.forEach(function(value) {
         maxCases = Math.max(maxCases, value.cases)
       })
       let colorScale = d3
-        .scaleSequentialSqrt()
+        .scaleSequential()
         .domain([0, maxCases])
         .interpolator(d3.interpolateReds)
 
@@ -66,7 +69,7 @@ export default {
       let _svg = d3
         .select('#' + this.id)
         .append('svg')
-        .attr('viewBox', [0, 0, 975, 610])
+        .attr('viewBox', [0, 0, width, height])
 
       // add states
       let path = d3.geoPath()
@@ -109,6 +112,27 @@ export default {
         .attr('stroke', 'black')
         .attr('stroke-linejoin', 'round')
         .attr('d', path)
+
+      // add legend
+      let lX = width - 475, lY = height - 50
+
+      _svg
+        .append("g")
+        .attr("class", "legendSequential")
+        .attr("transform", `translate(${lX},${lY})`);
+
+      let legendSequential = d3.legendColor()
+    .shapeWidth(20)
+    .shapeHeight(10)
+    .shapePadding(8)
+    .cells(10)
+    .orient("horizontal")
+    .scale(colorScale)
+    .labelFormat(d3.format(".2s"))
+    .title("Cases per State")
+
+_svg.select(".legendSequential")
+  .call(legendSequential);
     },
   },
 }
@@ -117,5 +141,9 @@ export default {
 <style>
 .selected {
   fill: rgb(10, 41, 120);
+}
+.label {
+  font-size: 0.7rem !important;
+  font-weight: 400 !important;
 }
 </style>
