@@ -24,7 +24,7 @@ export default {
       let x = d3
         .scaleTime()
         .domain(
-          d3.extent(data, function(d) {
+          d3.extent(data, function (d) {
             return d.date;
           })
         )
@@ -36,20 +36,26 @@ export default {
         .call(d3.axisBottom(x))
         .selectAll("text")
         .attr("transform", "translate(-10,0)rotate(-45)")
-        .style("text-anchor", "end");
+        .style("text-anchor", "end")
+        .style("font-size", "18px");
 
       // Add Y axis
       let y = d3
         .scaleLog()
+        .base(10)
         .domain([
           1,
-          d3.max(data, function(d) {
+          d3.max(data, function (d) {
             return +d.value;
-          })
+          }),
         ])
         .range([height, 0])
         .nice();
-      linegraph.append("g").call(d3.axisLeft(y));
+      linegraph
+        .append("g")
+        .call(d3.axisLeft(y).ticks(5, "~s"))
+        .selectAll("text")
+        .style("font-size", "18px");
 
       // Add the line
       linegraph
@@ -62,11 +68,11 @@ export default {
           "d",
           d3
             .line()
-            .x(function(d) {
+            .x(function (d) {
               // console.log(x(d.date))
               return x(d.date);
             })
-            .y(function(d) {
+            .y(function (d) {
               return y(d.value);
             })
         );
@@ -76,9 +82,12 @@ export default {
         .attr("x", width / 2)
         .attr("y", 0 - margin.top / 2)
         .attr("text-anchor", "middle")
-        .style("font-size", "16px")
+        .style("font-size", "20px")
+        .style("font-weight", "600")
         .text(title);
-    }
-  }
+
+      d3.select(this).style("font-size", "22px");
+    },
+  },
 };
 </script>
