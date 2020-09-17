@@ -7,13 +7,24 @@
             <a class="navbar-item" href="../">
               <img src="assets/logo.png" alt="Logo" />
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span
+              class="navbar-burger burger"
+              :class="{ 'is-active': active }"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="myNavbar"
+              @click="active = !active"
+            >
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
-          <div id="navbarMenu" class="navbar-menu">
+          <div
+            id="myNavbar"
+            class="navbar-menu"
+            :class="{ 'is-active': active }"
+          >
             <div class="navbar-end">
               <span class="navbar-item">
                 <a
@@ -24,6 +35,17 @@
                     <i class="fab fa-github"></i>
                   </span>
                   <span>View Source</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a
+                  class="button is-white is-outlined"
+                  href="https://covidtracking.com/about-data"
+                >
+                  <span class="icon">
+                    <i class="fas fa-database"></i>
+                  </span>
+                  <span>About the data</span>
                 </a>
               </span>
             </div>
@@ -52,6 +74,10 @@
 
 <script>
 export default {
-    
-}
+  data() {
+    return {
+      active: false,
+    };
+  },
+};
 </script>
